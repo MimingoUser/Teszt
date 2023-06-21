@@ -1,0 +1,1339 @@
+////////////kimenetek VALTOK
+int v1=9;
+int v2=25;
+int v3=11;
+int v16v=27;
+////////////kimenetek ALAKJELZOK
+int ajBej=3;
+int ajB1=19;
+int ajB2=5;
+int ajV1=21;
+int ajV2=7;
+int ajT1=23;
+int ajK1=46;
+int ajK2=29;
+int ajA1=15;
+int ajA2=31;
+int ajAej=17;
+int aj16v=44;
+int LED=36; /////ALAPÁLLAPOT/HIBAJelzés
+////////////bemenetek NYOMOGOMBOK
+int swajB=A1;
+int swajV1=A3;
+int swajV2=A5;
+int swajT1=A7;   ////////////A7
+int swajA=A9;
+int swajK1=A11;
+int swajK2=A13;
+int swajKB=A15;
+int swajKA=34;  ///////////33
+int swev1=35;
+int swev2=37;
+int swev3=39;
+int swJkozos=41;
+int swVkozos=43;
+int swTkozos=45;
+int swKO=47;
+int swKulcs=40;
+
+int SWTEST=32;
+
+/////////valtozok
+int sw1stat;
+int start;
+int startch;
+
+int swajBXstat;
+int swajV1Xstat;
+int swajV2Xstat;
+int swajT1Xstat;
+int swajAXstat;
+int swajK1Xstat;
+int swajK2Xstat;
+int swajKBXstat;
+int swajKAXstat;
+int swev1Xstat;
+int swev2Xstat;
+int swev3Xstat;
+int swJkozosXstat;
+int swVkozosXstat;
+int swTkozosXstat;
+int swKOXstat;
+int swKulcsXstat;
+
+int Avaganyutbe;
+int Avaganyutki;
+int Avaganyut;
+int Bvaganyutbe;
+int Bvaganyutki;
+int Bvaganyut;
+
+int ajBejXstat;
+int ajB1Xstat;
+int ajB2Xstat;
+int ajV1Xstat;
+int ajV2Xstat;
+int ajT1Xstat;
+int ajK1Xstat;
+int ajK2Xstat;
+int ajA1Xstat;
+int ajA2Xstat;
+int ajAejXstat;
+int aj16vXstat;
+
+int   ajB1Xallit;
+int   ajB2Xallit;
+int   ajV1Xallit;
+int   ajV2Xallit;
+int   ajT1Xallit;
+int   ajK1Xallit;
+int   ajK2Xallit;
+int   ajA1Xallit;
+int   ajA2Xallit;
+int   aj16vallit;
+
+int v1stat;
+int v2stat;
+int v3stat;
+
+int resetstat;
+
+void setup() {
+  ////////////kimenetek
+  pinMode(ajBej, OUTPUT);
+  pinMode(ajB1, OUTPUT);
+  pinMode(ajB2, OUTPUT);
+  pinMode(ajV1, OUTPUT);
+  pinMode(ajV2, OUTPUT);
+  pinMode(ajT1, OUTPUT);
+  pinMode(v1, OUTPUT);
+  pinMode(v2, OUTPUT);
+  pinMode(v3, OUTPUT);
+  pinMode(v16v, OUTPUT);
+  pinMode(ajK1, OUTPUT);
+  pinMode(ajK2, OUTPUT);
+  pinMode(ajA1, OUTPUT);
+  pinMode(ajA2, OUTPUT);
+  pinMode(ajAej, OUTPUT);
+  pinMode(aj16v, OUTPUT);
+  
+  ////////////bemenetek
+ 
+  pinMode(swajB, INPUT);
+  pinMode(swajV1, INPUT);
+  pinMode(swajV2, INPUT);
+  pinMode(swajT1, INPUT);
+  pinMode(swajA, INPUT);
+  pinMode(swajK1, INPUT);
+  pinMode(swajK2, INPUT);
+  pinMode(swajKB, INPUT);
+  pinMode(swajKA, INPUT);
+  pinMode(swev1, INPUT);
+  pinMode(swev2, INPUT);
+  pinMode(swev3, INPUT);
+  pinMode(swJkozos, INPUT);
+  pinMode(swVkozos, INPUT);
+  pinMode(swTkozos, INPUT);
+  pinMode(swKO, INPUT);
+  pinMode(swKulcs, INPUT);
+  
+  pinMode(SWTEST, INPUT);
+        
+  Serial.begin(9600);
+  
+}
+void loop() {
+/////////////////////////////////////RESET///////////////////////////////
+      if(startch<1){
+      Serial.println("RESET folyamat");
+      digitalWrite (v16v, HIGH);
+      digitalWrite (aj16v, HIGH);
+
+      digitalWrite (ajB1, HIGH);
+          ajB1Xstat=HIGH;
+          
+      digitalWrite (ajB2, HIGH);
+      digitalWrite (ajBej, HIGH);
+      digitalWrite (ajV1, HIGH);
+      digitalWrite (ajV2, HIGH);
+      digitalWrite (ajT1, HIGH);
+      digitalWrite (ajA1, HIGH);
+      digitalWrite (ajA2, HIGH);
+      digitalWrite (ajAej, HIGH);
+      digitalWrite (ajK1, HIGH);
+      digitalWrite (ajK2, HIGH);
+      digitalWrite (v1, HIGH); 
+      digitalWrite (v2, HIGH);
+      digitalWrite (v3, HIGH);
+
+      
+      Avaganyut=LOW;
+      Avaganyutbe=LOW;
+      Avaganyutki=LOW;
+      Bvaganyut=LOW;
+      Bvaganyutbe=LOW;
+      Bvaganyutki=LOW;
+      v1stat=HIGH;
+      v2stat=HIGH;
+      v3stat=HIGH;
+
+      ajBejXstat=HIGH;
+      ajB1Xstat=HIGH;
+      ajB2Xstat=HIGH;
+      ajV1Xstat=HIGH;
+      ajV2Xstat=HIGH;
+      ajT1Xstat=HIGH;
+      ajK1Xstat=HIGH;
+      ajK2Xstat=HIGH;
+      ajA1Xstat=HIGH;
+      ajA2Xstat=HIGH;
+      ajAejXstat=HIGH;
+      aj16vXstat=HIGH;
+
+      ajB1Xallit=HIGH;
+      ajB2Xallit=HIGH;
+      ajV1Xallit=HIGH;
+      ajV2Xallit=HIGH;
+      ajT1Xallit=HIGH;
+      ajK1Xallit=HIGH;
+      ajK2Xallit=HIGH;
+      ajA1Xallit=HIGH;
+      ajA2Xallit=HIGH;
+      aj16vallit=HIGH;
+      digitalWrite (LED, HIGH);
+    startch++;
+    resetstat=HIGH;
+          Serial.println("Alapállapot");
+  }else{
+
+
+/////////////////////////////////////ALLANDO//////////////////////////////
+      
+      //////////---KIOLVASAS---///////////         ---  KIOLVASAS ---
+      sw1stat=digitalRead(SWTEST);////////
+      swajBXstat=digitalRead(swajB);//////
+      swajV1Xstat=digitalRead(swajV1);////
+      swajV2Xstat=digitalRead(swajV2);////
+      swajT1Xstat=digitalRead(swajT1);////
+      swajAXstat=digitalRead(swajA);//////
+      swajK1Xstat=digitalRead(swajK1);////
+      swajK2Xstat=digitalRead(swajK2);////
+      swajKBXstat=digitalRead(swajKB);////
+      swajKAXstat=digitalRead(swajKA);////
+      swev1Xstat=digitalRead(swev1);//////
+      swev2Xstat=digitalRead(swev2);//////
+      swev3Xstat=digitalRead(swev3);//////
+      swJkozosXstat=digitalRead(swJkozos);
+      swVkozosXstat=digitalRead(swVkozos);
+      swTkozosXstat=digitalRead(swTkozos);
+      swKOXstat=digitalRead(swKO);////////
+      //////  swKulcsXstat=digitalRead(swKulcs);//
+      swKulcsXstat=digitalRead(swKulcs);
+      /////// ---KIOLVASAS VEGE ---///////
+      
+   //   Serial.println("ALAPPROGRAM");
+   
+if(resetstat==HIGH){
+  if(swajAXstat==HIGH){
+    if(swajBXstat==HIGH){
+      digitalWrite (LED, LOW);
+      digitalWrite (aj16v, LOW);
+      delay (210);
+      digitalWrite (aj16v, HIGH);
+      delay (290);
+      digitalWrite (LED, HIGH);
+      delay (500);
+      digitalWrite (v16v, LOW);
+      digitalWrite (LED, LOW);
+      delay (30);
+      digitalWrite (v16v, HIGH);
+      delay (30);
+      digitalWrite (v16v, LOW);
+      delay (30);
+      digitalWrite (v16v, HIGH);
+      delay (410);
+      digitalWrite (LED, HIGH);
+      delay (500);
+      digitalWrite (LED, LOW);
+      resetstat=LOW;
+      
+    }
+  }
+}else{
+  if(swajAXstat==HIGH){
+    if(swajBXstat==HIGH){
+      
+      startch=0;
+    }
+  }
+
+//////////////////////1es VÁGÁNY A OLDAL//////////////////////
+     if(ajT1Xstat==HIGH){
+      if(swajAXstat==HIGH){
+        if(swKulcsXstat==LOW){
+          if(swajV1Xstat==HIGH){
+            if(Avaganyut==LOW){
+              if(Bvaganyutbe==HIGH){         
+              }else{
+                if(Bvaganyutki==HIGH){
+                  if(v1stat==HIGH){
+                  }else{
+                    v2stat=LOW;
+                    v3stat=HIGH;
+                    Avaganyut=HIGH;
+                    Avaganyutbe=HIGH;                   
+                    digitalWrite (v2, LOW);          
+                    digitalWrite (v3, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+                  }
+                }else{
+                    v2stat=LOW;
+                    v3stat=HIGH;
+                    Avaganyut=HIGH;
+                    Avaganyutbe=HIGH;
+                    digitalWrite (v2, LOW);                   
+                    digitalWrite (v3, HIGH);                  
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+                }
+                
+              }
+            }else{
+            }
+          }else{
+          }
+        }     
+      }
+}
+      if(swajKAXstat==HIGH){ Serial.println("KA lenyomva");///////////////
+        if(swajK1Xstat==HIGH){
+          if(Avaganyut==LOW){
+            if(Bvaganyutbe==LOW){
+            v2stat=LOW;
+            Avaganyut=HIGH;
+            Avaganyutki=HIGH;
+            digitalWrite (v2, LOW);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }else{
+              if(v1stat==LOW){
+            v2stat=LOW;
+            Avaganyut=HIGH;
+            Avaganyutki=HIGH;
+            digitalWrite (v2, LOW);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+ 
+              }
+            }
+          }
+        }
+          
+      }else{
+        
+      }
+      
+      if(Avaganyut==HIGH){
+        if(Avaganyutbe==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajAXstat==HIGH){
+            Avaganyutbe=LOW;
+            Avaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+          ajA1Xallit=HIGH;
+          ajA2Xallit=HIGH;
+          }
+        }
+        }
+      }
+
+      if(Avaganyut==HIGH){
+        if(Avaganyutki==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajK1Xstat==HIGH){
+            Avaganyutki=LOW;
+            Avaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+            ajK1Xallit=HIGH;
+            
+          }
+        }
+        }
+      }
+
+//////////////////////2es VÁGÁNY B OLDAL//////////////////////
+      if(swajAXstat==HIGH){
+          if(swajV2Xstat==HIGH){
+            if(Avaganyut==LOW){
+              if(Bvaganyutbe==HIGH){
+              }else{
+                if(Bvaganyutki==HIGH){
+                  if(v1stat==LOW){   
+                    }else{
+                v2stat=HIGH;
+                Avaganyut=HIGH;
+                Avaganyutbe=HIGH;                      
+                digitalWrite (v2, HIGH);
+                delay (30);
+                digitalWrite (v16v, LOW);
+                delay (30);
+                digitalWrite (v16v, HIGH);
+                delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+                    }
+                }else{
+                v2stat=HIGH; 
+                Avaganyut=HIGH;
+                Avaganyutbe=HIGH;                              
+                digitalWrite (v2, HIGH);
+                delay (30);
+                digitalWrite (v16v, LOW);
+                delay (30);
+                digitalWrite (v16v, HIGH);
+                delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+                }
+              }
+            }
+          }
+             
+      }
+      if(swajKAXstat==HIGH){
+        if(swajK2Xstat==HIGH){
+           if(ajT1Xallit==HIGH){
+          if(Avaganyut==LOW){
+            if(Bvaganyutbe==LOW){
+            v2stat=HIGH;
+            Avaganyut=HIGH;
+            Avaganyutki=HIGH;
+            digitalWrite (v2, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }else{
+              if(v1stat==LOW){
+            }else{
+            v2stat=HIGH;
+            Avaganyut=HIGH;
+            Avaganyutki=HIGH;
+            digitalWrite (v2, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }
+            }
+          }
+        }
+        }    
+      }
+      
+      if(Avaganyut==HIGH){
+        if(Avaganyutbe==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajAXstat==HIGH){
+            Avaganyutbe=LOW;
+            Avaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+          ajA1Xallit=HIGH;
+          ajA2Xallit=HIGH;
+          }
+        }
+        }
+      }
+
+      if(Avaganyut==HIGH){
+        if(Avaganyutki==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajK2Xstat==HIGH){
+            Avaganyutki=LOW;
+            Avaganyut=LOW;
+            ajK2Xallit=HIGH;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+          }
+        }
+        }
+      }
+/////________________________________________________________________________________________
+
+
+
+//////////////////////1es VÁGÁNY B OLDAL//////////////////////
+     if(ajT1Xstat==HIGH){
+      if(swajBXstat==HIGH){
+        if(swKulcsXstat==LOW){
+          if(swajK1Xstat==HIGH){
+            if(Bvaganyut==LOW){
+              if(Avaganyutbe==HIGH){         
+              }else{
+                if(Avaganyutki==HIGH){
+                  if(v2stat==HIGH){
+                  }else{
+                    v1stat=LOW;
+                    v3stat=HIGH;
+                    Avaganyut=HIGH;
+                    Avaganyutbe=HIGH;
+                    digitalWrite (v1, LOW);
+                    digitalWrite (v3, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+
+                  }
+                }else{
+                    v1stat=LOW;
+                    v3stat=HIGH;
+                    Bvaganyut=HIGH;
+                    Bvaganyutbe=HIGH;                    
+                    digitalWrite (v1, LOW);
+                    digitalWrite (v3, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+                }
+                
+              }
+            }else{
+            }
+          }else{
+          }
+        }     
+      }
+}
+
+if(swKulcsXstat==LOW){
+      if(swajKBXstat==HIGH){
+         if(ajT1Xallit==HIGH){
+        if(swajV1Xstat==HIGH){
+          if(Bvaganyut==LOW){
+            if(Avaganyutbe==LOW){
+            v1stat=LOW;
+            Bvaganyut=HIGH;
+            Bvaganyutki=HIGH;
+            digitalWrite (v1, LOW);
+            digitalWrite (v3, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }else{
+              if(v2stat==LOW){
+            v1stat=LOW;
+            Bvaganyut=HIGH;
+            Bvaganyutki=HIGH;
+            digitalWrite (v1, LOW);
+            digitalWrite (v3, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+              }
+            }
+          }
+        }    
+      }
+}
+}
+      
+      if(Bvaganyut==HIGH){
+        if(Bvaganyutbe==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajBXstat==HIGH){
+            Bvaganyutbe=LOW;
+            Bvaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+            ajB1Xallit=HIGH;
+            ajB2Xallit=HIGH;
+          }
+        }
+        }
+      }
+
+      if(Bvaganyut==HIGH){
+        if(Bvaganyutki==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajV1Xstat==HIGH){
+            Bvaganyutki=LOW;
+            Bvaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+            ajV1Xallit=HIGH;
+          }
+        }
+        }
+      }
+
+//////////////////////2es VÁGÁNY A OLDAL//////////////////////
+      if(swajBXstat==HIGH){
+          if(swajK2Xstat==HIGH){
+            if(Bvaganyut==LOW){
+              if(Avaganyutbe==HIGH){
+              }else{
+                if(Avaganyutki==HIGH){
+                  if(v2stat==LOW){   
+                    }else{
+                v1stat=HIGH;
+                Avaganyut=HIGH;
+                Avaganyutbe=HIGH;
+                digitalWrite (v1, HIGH);
+                delay (30);
+                digitalWrite (v16v, LOW);
+                delay (30);
+                digitalWrite (v16v, HIGH);
+                delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+                    }
+                }else{
+                v1stat=HIGH;
+                Bvaganyut=HIGH;
+                Bvaganyutbe=HIGH;                
+                digitalWrite (v1, HIGH);
+                delay (30);
+                digitalWrite (v16v, LOW);
+                delay (30);
+                digitalWrite (v16v, HIGH);
+                delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+
+                }
+              }
+            }
+          }
+             
+      }
+      if(swajKBXstat==HIGH){
+        if(swajV2Xstat==HIGH){
+          if(Bvaganyut==LOW){
+            if(Avaganyutbe==LOW){
+            v1stat=HIGH;
+            Bvaganyut=HIGH;
+            Bvaganyutki=HIGH;
+            digitalWrite (v1, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }else{
+              if(v2stat==LOW){
+            }else{
+            v1stat=HIGH;
+            Bvaganyut=HIGH;
+            Bvaganyutki=HIGH;          
+            digitalWrite (v1, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+
+            }
+            }
+          }
+        }    
+      }
+      
+      if(Bvaganyut==HIGH){
+        if(Bvaganyutbe==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajBXstat==HIGH){
+            Bvaganyutbe=LOW;
+            Bvaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+          }
+        }
+        }
+      }
+
+      if(Bvaganyut==HIGH){
+        if(Bvaganyutki==HIGH){
+        if(swKOXstat==HIGH){
+          if(swajV2Xstat==HIGH){
+            Bvaganyutki=LOW;
+            Bvaganyut=LOW;
+            ////////////////////////JELZŐK FELOLDÁSA///////////
+          ajV2Xallit=HIGH;
+          }
+        }
+        }
+      }
+/////_________________________________________________________________________________________
+
+//////////////////////EGYGOMBOS VÁLTÓÁLLÍTÁS///////////////////
+
+if(swVkozosXstat==HIGH){
+  if(swev1Xstat==HIGH){
+    if(Bvaganyut==LOW){
+      if(v1stat==LOW){
+        v1stat=HIGH;
+        delay (30);
+        digitalWrite (v1, HIGH);
+        delay (30);
+        digitalWrite (v16v, LOW);
+        delay (30);
+        digitalWrite (v16v, HIGH);
+        delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+      }else{
+        v1stat=LOW;
+        delay (30);
+        digitalWrite (v1, LOW);
+        delay (30);
+        digitalWrite (v16v, LOW);
+        delay (30);
+        digitalWrite (v16v, HIGH);     
+        delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);   
+      }
+    }
+  }
+}
+
+if(swVkozosXstat==HIGH){
+  if(swev2Xstat==HIGH){
+    if(Avaganyut==LOW){
+      if(v2stat==LOW){
+        v2stat=HIGH;
+        delay (30);
+        digitalWrite (v2, HIGH);
+        delay (30);
+        digitalWrite (v16v, LOW);
+        delay (30);
+        digitalWrite (v16v, HIGH);
+        delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+      }else{
+        v2stat=LOW;
+        delay (30);
+        digitalWrite (v2, LOW);
+        delay (30);
+        digitalWrite (v16v, LOW);
+        delay (30);
+        digitalWrite (v16v, HIGH);  
+        delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);      
+      }
+    }else{
+    }
+  }
+}
+ if(swKulcsXstat==HIGH){
+  
+ 
+  if(swVkozosXstat==HIGH){
+    if(ajT1Xstat==HIGH){
+    if(swev3Xstat==HIGH){
+      if(Avaganyut==HIGH){
+        if(v2stat==HIGH){
+          if(Bvaganyut==LOW){
+            if(v3stat==LOW){
+              v3stat=HIGH;
+              delay (30);
+              digitalWrite (v3, HIGH);
+              delay (30);
+              digitalWrite (v16v, LOW);
+              delay (30);
+              digitalWrite (v16v, HIGH);
+              delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }else{
+              v3stat=LOW;
+              delay (30);
+              digitalWrite (v3, LOW);
+              delay (30);
+              digitalWrite (v16v, LOW);
+              delay (30);
+              digitalWrite (v16v, HIGH); 
+              delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);       
+            }
+          }else{
+            if(v1stat==HIGH){
+              if(v3stat==LOW){
+                v3stat=HIGH;
+                delay (30);
+                digitalWrite (v3, HIGH);
+                delay (30);
+                digitalWrite (v16v, LOW);
+                delay (30);
+                digitalWrite (v16v, HIGH);
+                delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+              }else{
+                v3stat=LOW;
+                delay (30);
+                digitalWrite (v3, LOW);
+                delay (30);
+                digitalWrite (v16v, LOW);
+                delay (30);
+                digitalWrite (v16v, HIGH);   
+                delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);     
+              }
+            }
+          }
+        }
+      }else{       
+        if(Bvaganyut==LOW){
+          if(v3stat==LOW){
+            v3stat=HIGH;
+            delay (30);
+            digitalWrite (v3, HIGH);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+          }else{
+            v3stat=LOW;
+            delay (30);
+            digitalWrite (v3, LOW);
+            delay (30);
+            digitalWrite (v16v, LOW);
+            delay (30);
+            digitalWrite (v16v, HIGH);   
+            delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);     
+          }
+        }else{
+          if(v1stat==HIGH){
+            if(v3stat==LOW){
+              v3stat=HIGH;
+              delay (30);
+              digitalWrite (v3, HIGH);
+              delay (30);
+              digitalWrite (v16v, LOW);
+              delay (30);
+              digitalWrite (v16v, HIGH);
+              delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);
+            }else{
+              v3stat=LOW;
+              delay (30);
+              digitalWrite (v3, LOW);
+              delay (30);
+              digitalWrite (v16v, LOW);
+              delay (30);
+              digitalWrite (v16v, HIGH); 
+              delay (30);
+                    digitalWrite (v16v, LOW);
+                    delay (30);
+                    digitalWrite (v16v, HIGH);
+                    delay (300);       
+            }
+          }
+        }
+      }
+    }
+  }
+}
+}
+////////////////////////////////////////////////////////////////////////////////      J E L Z O K   Á L L Í T Á S A    /////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////ELŐJELZŐK////////////////////////////////
+  if(ajB1Xstat==LOW){
+     if(ajBejXstat==HIGH){
+       delay (3000);
+       ajBejXstat=LOW;
+       digitalWrite (ajBej, LOW);
+       digitalWrite (aj16v, LOW);
+       delay (210);
+       digitalWrite (aj16v, HIGH);
+       Serial.println("ismétlimagát 1");
+     }
+  }else{
+    if(ajBejXstat==LOW){
+      ajBejXstat=HIGH;
+      ajB1Xstat=HIGH;
+      ajB2Xstat=HIGH;
+      digitalWrite (ajBej, HIGH);
+      digitalWrite (aj16v, LOW);
+      delay (210);
+      digitalWrite (aj16v, HIGH);
+      delay (3000);
+      digitalWrite (ajB1, HIGH);
+      digitalWrite (ajB2, HIGH);  
+      digitalWrite (aj16v, LOW);
+      delay (210);
+      digitalWrite (aj16v, HIGH);
+       Serial.println("ismétlimagát 2");
+    }
+  }
+    if(ajA1Xstat==LOW){
+     if(ajAejXstat==HIGH){
+       delay (3000);
+       ajAejXstat=LOW;
+       digitalWrite (ajAej, LOW);
+       digitalWrite (aj16v, LOW);
+       delay (210);
+       digitalWrite (aj16v, HIGH);
+       Serial.println("ismétlimagát 3");
+     }
+  }else{
+    if(ajAejXstat==LOW){
+      ajAejXstat=HIGH;
+      ajA1Xstat=HIGH;
+      ajA2Xstat=HIGH;
+      digitalWrite (ajAej, HIGH);
+      digitalWrite (aj16v, LOW);
+      delay (210);
+      digitalWrite (aj16v, HIGH);
+      delay (3000);
+      digitalWrite (ajA1, HIGH);
+      digitalWrite (ajA2, HIGH);  
+      digitalWrite (aj16v, LOW);
+      delay (210);
+      digitalWrite (aj16v, HIGH);
+       Serial.println("ismétlimagát 4");
+    }
+  }
+
+/////////////////////////////////////////////////// B FŐJELZŐ ÁLLÍTÁSA /////////////
+
+      if(ajB1Xstat==ajB1Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajB1Xallit==LOW){
+          if(ajB2Xallit==LOW){        
+            ajB1Xstat=LOW;
+            ajB2Xstat=LOW;
+            digitalWrite (ajB1, LOW); 
+            digitalWrite (ajB2, LOW); 
+            digitalWrite (aj16v, LOW);
+            delay (210);
+            digitalWrite (aj16v, HIGH);
+          }else{
+            ajB1Xstat=LOW;
+            ajB2Xstat=HIGH;
+            digitalWrite (ajB1, LOW); 
+            digitalWrite (ajB2, HIGH); 
+            digitalWrite (aj16v, LOW);
+            delay (210);
+            digitalWrite (aj16v, HIGH);
+          }
+        }else{
+          ajB1Xstat=HIGH;
+          ajB2Xstat=HIGH;
+        } 
+      }
+
+/////////////////////////////////////////////////// A FŐJELZŐ ÁLLÍTÁSA /////////////
+
+      if(ajA1Xstat==ajA1Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajA1Xallit==LOW){
+          if(ajA2Xallit==LOW){        
+            ajA1Xstat=LOW;
+            ajA2Xstat=LOW;
+            digitalWrite (ajA1, LOW); 
+            digitalWrite (ajA2, LOW); 
+            digitalWrite (aj16v, LOW);
+            delay (210);
+            digitalWrite (aj16v, HIGH);
+          }else{
+            ajA1Xstat=LOW;
+            ajA2Xstat=HIGH;
+            digitalWrite (ajA1, LOW); 
+            digitalWrite (ajA2, HIGH); 
+            digitalWrite (aj16v, LOW);
+            delay (210);
+            digitalWrite (aj16v, HIGH);
+          }
+        }else{
+          ajA1Xstat=HIGH;
+          ajA2Xstat=HIGH;
+        } 
+      }
+      
+/////////////////////////////////////////////////// V1 kijárati ÁLLÍTÁSA /////////////
+
+      if(ajV1Xstat==ajV1Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajV1Xallit==LOW){     
+          ajV1Xstat=LOW;
+          digitalWrite (ajV1, LOW); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        }else{
+          ajV1Xstat=HIGH;
+          digitalWrite (ajV1, HIGH); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        } 
+      }
+
+/////////////////////////////////////////////////// V2 kijárati ÁLLÍTÁSA /////////////
+
+      if(ajV2Xstat==ajV2Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajV2Xallit==LOW){     
+          ajV2Xstat=LOW;
+          digitalWrite (ajV2, LOW); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        }else{
+          ajV2Xstat=HIGH;
+          digitalWrite (ajV2, HIGH); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        } 
+      }
+
+/////////////////////////////////////////////////// T1 Toltatás Jelző ÁLLÍTÁSA /////////////
+
+      if(ajT1Xstat==ajT1Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajT1Xallit==LOW){     
+          ajT1Xstat=LOW;
+          digitalWrite (ajT1, LOW); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        }else{
+          ajT1Xstat=HIGH;
+          digitalWrite (ajT1, HIGH); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        } 
+      }
+      
+/////////////////////////////////////////////////// K1 Kijárati Jelző ÁLLÍTÁSA /////////////
+
+      if(ajK1Xstat==ajK1Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajK1Xallit==LOW){     
+          ajK1Xstat=LOW;
+          digitalWrite (ajK1, LOW); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        }else{
+          ajK1Xstat=HIGH;
+          digitalWrite (ajK1, HIGH); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        } 
+      }
+      
+/////////////////////////////////////////////////// K2 Kijárati Jelző ÁLLÍTÁSA /////////////
+
+      if(ajK2Xstat==ajK2Xallit){
+        //kivánalmak szerinti  
+
+      }else{
+        if(ajK2Xallit==LOW){     
+          ajK2Xstat=LOW;
+          digitalWrite (ajK2, LOW); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        }else{
+          ajK2Xstat=HIGH;
+          digitalWrite (ajK2, HIGH); 
+          digitalWrite (aj16v, LOW);
+          delay (210);
+          digitalWrite (aj16v, HIGH);
+        } 
+      }
+
+////////////////////////////////////////////////////////////////////////////////      J E L Z O K   K E Z E L É S E    /////////////////////////////////////////////////////////////////////////////////////
+  if(Bvaganyutbe==HIGH){
+    if(swJkozosXstat==HIGH){
+    if(swajBXstat==HIGH){
+        if(v1stat==HIGH){
+          ajB1Xallit=LOW;
+          ajB2Xallit=HIGH;
+        }else{
+          ajB1Xallit=LOW;
+          ajB2Xallit=LOW;
+        }
+      }
+    }
+  }
+  
+  if(Avaganyutbe==HIGH){
+    if(swJkozosXstat==HIGH){
+    if(swajAXstat==HIGH){
+        if(v2stat==HIGH){
+          ajA1Xallit=LOW;
+          ajA2Xallit=HIGH;
+        }else{
+          ajA1Xallit=LOW;
+          ajA2Xallit=LOW;
+        }
+      }
+    }
+  }
+  
+  if(Bvaganyutki==HIGH){
+    if(swJkozosXstat==HIGH){
+    if(swajV1Xstat==HIGH){
+        if(v1stat==LOW){
+          ajV1Xallit=LOW;
+        }
+      }
+    }
+  }
+    if(Bvaganyutki==HIGH){
+    if(swJkozosXstat==HIGH){
+    if(swajV2Xstat==HIGH){
+        if(v1stat==HIGH){
+          ajV2Xallit=LOW;
+        }
+      }
+    }
+  }
+
+   if(Avaganyutki==HIGH){
+    if(swJkozosXstat==HIGH){
+    if(swajK1Xstat==HIGH){
+        if(v2stat==LOW){
+          ajK1Xallit=LOW;
+        }
+      }
+    }
+  }
+    if(Avaganyutki==HIGH){
+    if(swJkozosXstat==HIGH){
+    if(swajK2Xstat==HIGH){
+        if(v2stat==HIGH){
+          ajK2Xallit=LOW;
+        }
+      }
+    }
+  }
+
+
+if(v3stat==LOW){
+  if(swTkozosXstat==HIGH){
+    if(swajT1Xstat==HIGH){
+      if(ajT1Xstat==HIGH){
+        ajT1Xallit=LOW;
+      }else{ Serial.println("T1 már ÁLL!");}
+    }
+  }
+}
+
+
+if(swKOXstat==HIGH){
+    if(swajT1Xstat==HIGH){
+      if(ajT1Xstat==LOW){
+        ajT1Xallit=HIGH;
+      }
+    }
+}
+
+
+
+
+      
+      
+    }
+
+
+/*
+      if(swJkozosXstat==HIGH){
+        if(swajBXstat==HIGH){
+          if(ajB1Xallit==HIGH){          
+          ajB1Xallit=LOW;
+          ajB2Xallit=LOW;
+          delay(300);
+          }else{
+          ajB1Xallit=HIGH;
+          ajB2Xallit=HIGH;
+          delay(300);  
+          }
+        }
+
+        if(swajAXstat==HIGH){
+          if(ajA1Xallit==HIGH){          
+          ajA1Xallit=LOW;
+          ajA2Xallit=LOW;
+          delay(300);
+          }else{
+          ajA1Xallit=HIGH;
+          ajA2Xallit=HIGH;
+          delay(300);  
+          }
+        }
+      }
+*/
+
+
+
+
+/*
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   //////////---DEBUGING---///////////         ---  DEBUGIGN ---
+      Serial.print("SWTEST: ");//////////
+      Serial.println(SWTEST);///////////////
+      Serial.print("B: ");//////////
+      Serial.println(swajB);///////////////
+      Serial.print("V1: ");//////////
+      Serial.println(swajV1);///////////////
+      Serial.print("V2: ");//////////
+      Serial.println(swajV2);///////////////
+      Serial.print("T1: ");//////////
+      Serial.println(swajT1);///////////////
+      Serial.print("A: ");//////////
+      Serial.println(swajA);///////////////
+      Serial.print("K1: ");//////////
+      Serial.println(swajK1);///////////////
+      Serial.print("K2: ");//////////
+      Serial.println(swajK2);///////////////
+      Serial.print("KB: ");//////////
+      Serial.println(swajKB);///////////////
+      Serial.print("KA: ");//////////
+      Serial.println(swajKA);///////////////
+      Serial.print("v1: ");//////////
+      Serial.println(swev1);///////////////
+      Serial.print("v2: ");//////////
+      Serial.println(swev2);///////////////
+      Serial.print("v3: ");//////////
+      Serial.println(swev3);///////////////
+      Serial.print("Jkozos: ");//////////
+      Serial.println(swJkozos);///////////////
+      Serial.print("Vkozos: ");//////////
+      Serial.println(swVkozos);///////////////
+      Serial.print("Tkozos: ");//////////
+      Serial.println(swTkozos);///////////////
+      Serial.print("KO: ");//////////
+      Serial.println(swKO);///////////////
+      */
+      //////  swKulcsXstat=digitalRead(swKulcs);//
+      /////// ---KIOLVASAS VEGE ---///////
+   }
+  }
